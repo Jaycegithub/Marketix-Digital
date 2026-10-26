@@ -9,365 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Public+Sans:wght@400;500;600;700&display=swap">
-<style>
-/* Layout: a courthouse-steps rhythm. Navy bands (hero, The Beak, footer) alternate with paper and mist,
-   1200px boxed content, a light sky-blue accent that sits softly on the navy. Single committed light brand look. */
-:root {
-  --ink: #001f41;        /* logo navy */
-  --ink-2: #0a2c55;      /* raised navy */
-  --ink-3: #001630;      /* deep navy (footer) */
-  --steel: #4a6e96;      /* logo steel blue */
-  --steel-soft: #9db3cc; /* steel on navy */
-  --mist: #eef3f8;       /* light blue band */
-  --paper: #ffffff;
-  --text: #33445a;       /* body copy, navy-biased grey */
-  --muted: #5d6f85;
-  --line: #d6e0eb;
-  --sky: #9cc8f0;        /* light blue accent: buttons, highlights */
-  --sky-hi: #bfdcf6;
-
-  --f-display: "Libre Caslon Text", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  --f-label: "Cinzel", "Trajan Pro", "Times New Roman", serif;
-  --f-body: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
-
-  --s-h1: clamp(2.6rem, 1.6rem + 4.2vw, 4.9rem);
-  --s-h2: clamp(2rem, 1.45rem + 2.2vw, 3.1rem);
-  --s-h3: 1.3rem;
-  --s-lede: clamp(1.1rem, 1rem + .4vw, 1.3rem);
-  --s-body: 1.0625rem;
-
-  --wrap: 1200px;
-  --band: clamp(72px, 6vw + 40px, 120px);
-  --radius: 16px;
-  --shadow: 0 1px 2px rgba(0, 31, 65, .06), 0 12px 32px -12px rgba(0, 31, 65, .18);
-  color-scheme: light;
-}
-
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--text);
-  font: 400 var(--s-body)/1.7 var(--f-body);
-  -webkit-font-smoothing: antialiased;
-}
-body::before {
-  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
-  z-index: 60; background: var(--paper);
-}
-img { max-width: 100%; height: auto; display: block; }
-a { color: inherit; }
-h1, h2, h3 { font-family: var(--f-display); color: var(--ink); font-weight: 700; margin: 0; text-wrap: balance; }
-p { margin: 0; }
-:focus-visible { outline: 3px solid var(--steel); outline-offset: 3px; border-radius: 4px; }
-
-.skip { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--ink); color: var(--paper); padding: 10px 16px; border-radius: 8px; }
-.skip:focus { left: 16px; }
-
-.wrap {
-  max-width: calc(var(--wrap) + 2 * 24px);
-  margin-inline: auto;
-  padding-left: max(24px, env(safe-area-inset-left, 0px));
-  padding-right: max(24px, env(safe-area-inset-right, 0px));
-}
-@media (max-width: 600px) {
-  .wrap { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
-}
-.band { padding-block: var(--band); position: relative; }
-.band--paper { background: var(--paper); }
-.band--mist { background: var(--mist); }
-.band--ink { background: var(--ink); color: #c9d6e5; }
-.band--ink h2, .band--ink h3 { color: var(--paper); }
-
-/* ---------- Shared type ---------- */
-.eyebrow {
-  font: 600 .8rem/1.3 var(--f-label);
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--steel);
-  display: inline-flex; align-items: center; gap: 12px;
-}
-.eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
-.band--ink .eyebrow, .hero .eyebrow { color: var(--steel-soft); }
-.h2 { font-size: var(--s-h2); line-height: 1.12; letter-spacing: -.01em; }
-.lede { font-size: var(--s-lede); line-height: 1.6; color: var(--ink); }
-.band--ink .lede { color: #e4ecf5; }
-.stack { display: grid; gap: 20px; }
-.section-head { display: grid; gap: 18px; max-width: 760px; }
-.section-head p { max-width: 65ch; }
-
-/* ---------- Buttons ---------- */
-.btn {
-  --bg: var(--ink); --fg: var(--paper); --bd: var(--ink);
-  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 52px; padding: 0 26px; border-radius: 999px;
-  background: var(--bg); color: var(--fg); border: 1.5px solid var(--bd);
-  font: 600 1rem/1 var(--f-body); letter-spacing: .01em; text-decoration: none;
-  transition: transform .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
-}
-.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(0, 31, 65, .45); }
-.btn svg { width: 18px; height: 18px; flex: none; }
-.btn--sky { --bg: var(--sky); --bd: var(--sky); --fg: var(--ink-3); }
-.btn--sky:hover { --bg: var(--sky-hi); --bd: var(--sky-hi); }
-.btn--ghost-light { --bg: transparent; --fg: var(--paper); --bd: rgba(255, 255, 255, .45); }
-.btn--ghost-light:hover { --bg: var(--paper); --fg: var(--ink); --bd: var(--paper); }
-.btn--outline { --bg: transparent; --fg: var(--ink); --bd: var(--ink); }
-.btn--outline:hover { --bg: var(--ink); --fg: var(--paper); }
-.btn--light { --bg: var(--paper); --fg: var(--ink); --bd: var(--paper); }
-.btn--light:hover { --bg: var(--mist); --bd: var(--mist); }
-.btn-row { display: flex; flex-wrap: wrap; gap: 14px; }
-
-.text-link {
-  display: inline-flex; align-items: center; gap: 8px;
-  font: 600 1rem/1.2 var(--f-body); color: var(--ink); text-decoration: none;
-  border-bottom: 1.5px solid currentColor; padding-bottom: 4px;
-}
-.text-link svg { width: 16px; height: 16px; transition: transform .2s ease; }
-.text-link:hover svg { transform: translateX(4px); }
-
-/* ---------- Header ---------- */
-.site-header {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
-  background: rgba(255, 255, 255, .94);
-  backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
-  border-bottom: 1px solid var(--line);
-}
-.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 84px; }
-.brand { display: block; flex: none; }
-.brand img { width: 210px; }
-.nav { display: flex; align-items: center; gap: 34px; }
-.nav ul { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
-.nav a:not(.btn) {
-  font: 500 .98rem/1 var(--f-body); color: var(--ink); text-decoration: none;
-  padding-block: 8px; background: linear-gradient(var(--sky), var(--sky)) no-repeat 0 100% / 0 2px;
-  transition: background-size .25s ease;
-}
-.nav a:not(.btn):hover, .nav a[aria-current="page"] { background-size: 100% 2px; }
-.nav .btn { min-height: 46px; padding: 0 22px; font-size: .95rem; }
-.menu-toggle {
-  display: none; width: 48px; height: 48px; border-radius: 12px;
-  border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer;
-  align-items: center; justify-content: center;
-}
-.menu-toggle svg { width: 24px; height: 24px; }
-
-@media (max-width: 960px) {
-  .brand img { width: 176px; }
-  .menu-toggle { display: inline-flex; }
-  .nav {
-    position: absolute; left: 0; right: 0; top: 100%;
-    flex-direction: column; align-items: stretch; gap: 8px;
-    background: var(--paper); border-bottom: 1px solid var(--line);
-    padding: 12px max(20px, env(safe-area-inset-right, 0px)) 24px max(20px, env(safe-area-inset-left, 0px));
-    box-shadow: 0 24px 40px -24px rgba(0, 31, 65, .35);
-  }
-  .nav:not(.is-open) { display: none; }
-  .nav ul { flex-direction: column; gap: 0; }
-  .nav ul a:not(.btn) { display: block; padding: 16px 0; border-bottom: 1px solid var(--line); background: none; font-size: 1.05rem; }
-  .nav .btn { margin-top: 12px; }
-}
-
-/* ---------- Hero ---------- */
-.hero {
-  position: relative; overflow: hidden; color: #c9d6e5;
-  background:
-    radial-gradient(1000px 520px at 50% 30%, rgba(74, 110, 150, .42), transparent 70%),
-    radial-gradient(600px 400px at 6% 100%, rgba(74, 110, 150, .22), transparent 70%),
-    var(--ink);
-  padding-block: clamp(64px, 7vw + 24px, 120px);
-}
-/* faint colonnade: courthouse columns behind the hero */
-.hero::before {
-  content: ""; position: absolute; inset: 0;
-  background: repeating-linear-gradient(90deg, transparent 0 118px, rgba(255, 255, 255, .035) 118px 120px);
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
-          mask-image: linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
-  pointer-events: none;
-}
-.hero .wrap { position: relative; }
-.hero-copy { display: grid; gap: 26px; min-width: 0; max-width: 880px; margin-inline: auto; justify-items: center; text-align: center; }
-.hero .eyebrow::after { content: ""; width: 28px; height: 1px; background: currentColor; }
-.hero .btn-row { justify-content: center; }
-.hero h1 { color: var(--paper); font-size: var(--s-h1); line-height: 1.04; letter-spacing: -.015em; }
-.hero h1 em { display: block; font-style: italic; font-weight: 400; color: var(--steel-soft); }
-.hero .lede { color: #e4ecf5; max-width: 58ch; }
-.hero-copy > p:not(.lede) { max-width: 58ch; }
-.hero .btn-row { margin-top: 8px; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .rise { animation: rise .8s cubic-bezier(.2, .7, .2, 1) both; }
-  .rise-2 { animation-delay: .1s; } .rise-3 { animation-delay: .2s; } .rise-4 { animation-delay: .3s; }
-  @keyframes rise { from { transform: translateY(18px); opacity: .001; } }
-}
-
-@media (max-width: 480px) {
-  .hero .btn-row .btn { width: 100%; }
-}
-
-/* ---------- Clinton's story ---------- */
-.story .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
-.portrait {
-  position: sticky; top: 120px;
-  border-radius: 24px; overflow: hidden; background: var(--ink);
-  display: grid; grid-template-rows: auto auto;
-  box-shadow: var(--shadow);
-}
-.portrait-art {
-  position: relative; aspect-ratio: 5 / 4;
-  background: radial-gradient(80% 90% at 50% 100%, rgba(74, 110, 150, .55), transparent 70%), var(--ink-2);
-  display: flex; align-items: flex-end; justify-content: center; overflow: hidden;
-}
-.portrait-art img { width: 86%; }
-.portrait blockquote { margin: 0; padding: 32px 36px 36px; display: grid; gap: 16px; }
-.portrait blockquote p { font: italic 400 clamp(1.6rem, 1.2rem + 1.2vw, 2.15rem)/1.25 var(--f-display); color: var(--paper); }
-.portrait blockquote footer { font: 600 .78rem/1 var(--f-label); letter-spacing: .22em; text-transform: uppercase; color: var(--steel-soft); }
-.quote-mark { font: 700 4.5rem/.6 var(--f-display); color: var(--sky-hi); height: 28px; }
-
-.story-copy { display: grid; gap: 22px; min-width: 0; }
-.story-copy > p { max-width: 64ch; }
-.principle {
-  display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start;
-  margin-block: 8px; padding: 26px 28px; border-radius: var(--radius);
-  background: var(--mist); color: var(--ink);
-}
-.principle svg { width: 36px; height: 36px; color: var(--steel); }
-.principle p { font-size: 1.05rem; }
-.signoff { font: italic 400 1.6rem/1.3 var(--f-display); color: var(--ink); }
-.story-copy .btn { justify-self: start; margin-top: 6px; }
-
-@media (max-width: 900px) {
-  .story .wrap { grid-template-columns: 1fr; }
-  .portrait { position: relative; top: 0; max-width: 560px; }
-}
-
-/* ---------- Videos ---------- */
-.videos-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 28px 48px; }
-.videos-head .section-head { flex: 1 1 520px; }
-.videos-intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 48px; margin-top: 28px; max-width: 980px; }
-.video-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin-top: 56px; }
-.video-card {
-  display: flex; flex-direction: column;
-  background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
-  overflow: hidden; box-shadow: var(--shadow); text-decoration: none; color: inherit;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-.video-card:hover { transform: translateY(-6px); box-shadow: 0 2px 4px rgba(0, 31, 65, .06), 0 28px 48px -18px rgba(0, 31, 65, .32); }
-.thumb {
-  position: relative; aspect-ratio: 16 / 9; overflow: hidden;
-  display: flex; align-items: flex-end; padding: 20px 22px;
-  background: var(--thumb, linear-gradient(135deg, var(--ink-2), var(--ink-3)));
-}
-.thumb::before {
-  content: ""; position: absolute; right: -6%; bottom: -14%; width: 58%; aspect-ratio: 520 / 385;
-  background: url("assets/ddic-emblem-white.png") center / contain no-repeat; opacity: .14;
-}
-.thumb-title { position: relative; font: 700 1.15rem/1.2 var(--f-display); color: var(--paper); max-width: 70%; }
-.thumb .play {
-  position: absolute; top: 18px; left: 20px;
-  width: 52px; height: 52px; border-radius: 50%;
-  display: grid; place-items: center; background: rgba(255, 255, 255, .95); color: var(--ink);
-  transition: transform .25s ease;
-}
-.thumb .play svg { width: 20px; height: 20px; margin-left: 3px; }
-.video-card:hover .play { transform: scale(1.1); }
-.video-card .body { display: flex; flex-direction: column; gap: 12px; padding: 28px 28px 30px; flex: 1; }
-.video-card h3 { font-size: var(--s-h3); line-height: 1.3; }
-.video-card .body p { flex-grow: 1; color: var(--muted); }
-.video-card .cta { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--ink); margin-top: 6px; }
-.video-card .cta svg { width: 16px; height: 16px; transition: transform .2s ease; }
-.video-card:hover .cta svg { transform: translateX(4px); }
-.v2 { --thumb: linear-gradient(135deg, #22466f, var(--ink-3)); }
-.v3 { --thumb: linear-gradient(135deg, var(--steel), var(--ink)); }
-
-@media (max-width: 960px) {
-  .video-grid { grid-template-columns: 1fr; max-width: 560px; }
-  .videos-intro { grid-template-columns: 1fr; }
-}
-
-/* ---------- The Beak ---------- */
-.beak { overflow: hidden; }
-.beak::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(700px 500px at 100% 0%, rgba(74, 110, 150, .35), transparent 70%);
-}
-.beak .wrap { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
-.beak-copy { display: grid; gap: 22px; min-width: 0; }
-.beak-copy > p { max-width: 60ch; }
-.beak-copy .btn { justify-self: start; margin-top: 10px; }
-.bridge { display: grid; gap: 0; position: relative; min-width: 0; }
-.pillar {
-  position: relative; padding: 32px; border-radius: var(--radius);
-  background: var(--ink-2); border: 1px solid rgba(255, 255, 255, .12);
-  display: grid; gap: 14px;
-}
-.pillar--beak { background: var(--paper); border-color: var(--paper); color: var(--text); }
-.pillar--beak h3 { color: var(--ink); }
-.pillar-tag { font: 600 .74rem/1 var(--f-label); letter-spacing: .22em; text-transform: uppercase; color: var(--steel-soft); }
-.pillar--beak .pillar-tag { color: var(--steel); }
-.pillar h3 { font-size: 1.5rem; line-height: 1.2; }
-.focus { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 10px; }
-.focus li { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; font-weight: 500; color: var(--ink); }
-.focus svg { width: 22px; height: 22px; color: var(--steel); margin-top: 2px; }
-.link-node {
-  justify-self: center; display: grid; place-items: center;
-  width: 56px; height: 56px; margin-block: -14px; position: relative; z-index: 2;
-  border-radius: 50%; background: var(--sky); color: var(--ink-3);
-  box-shadow: 0 0 0 8px var(--ink);
-}
-.link-node svg { width: 24px; height: 24px; }
-
-@media (max-width: 900px) {
-  .beak .wrap { grid-template-columns: 1fr; }
-}
-
-/* ---------- Donate ---------- */
-.donate-panel {
-  position: relative; overflow: hidden;
-  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(32px, 5vw, 72px); align-items: center;
-  padding: clamp(32px, 5vw, 72px); border-radius: 28px;
-  background:
-    radial-gradient(500px 360px at 100% 100%, rgba(156, 200, 240, .3), transparent 70%),
-    var(--mist);
-  border: 1px solid var(--line);
-}
-.donate-copy { display: grid; gap: 20px; min-width: 0; }
-.donate-copy p { max-width: 62ch; }
-.donate-card {
-  background: var(--ink); color: #c9d6e5; border-radius: 20px; padding: 32px;
-  display: grid; gap: 18px; box-shadow: 0 30px 60px -30px rgba(0, 31, 65, .55);
-}
-.donate-card h3 { color: var(--paper); font-size: 1.45rem; line-height: 1.25; }
-.donate-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.donate-card li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; }
-.donate-card li svg { width: 20px; height: 20px; color: var(--sky-hi); margin-top: 3px; }
-.donate-card .btn { width: 100%; margin-top: 6px; }
-
-@media (max-width: 900px) {
-  .donate-panel { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .donate-panel { padding: 28px 20px; margin-inline: -4px; }
-  .donate-card { padding: 26px 22px; }
-}
-
-/* ---------- Footer ---------- */
-.site-footer { background: var(--ink-3); color: #9fb2c8; padding-block: 72px 36px; }
-.footer-top { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: 40px; padding-bottom: 48px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
-.footer-brand { display: grid; gap: 18px; align-content: start; }
-.footer-brand img { width: 230px; }
-.footer-brand p { max-width: 42ch; font-size: .98rem; }
-.site-footer h4 { margin: 0 0 16px; font: 600 .78rem/1 var(--f-label); letter-spacing: .22em; text-transform: uppercase; color: var(--paper); }
-.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.site-footer a { text-decoration: none; }
-.site-footer a:hover { color: var(--paper); text-decoration: underline; text-underline-offset: 4px; }
-.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; padding-top: 28px; font-size: .88rem; }
-.footer-bottom p { max-width: 80ch; }
-
-@media (max-width: 800px) {
-  .footer-top { grid-template-columns: 1fr 1fr; }
-  .footer-brand { grid-column: 1 / -1; }
-}
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -379,11 +21,16 @@ p { margin: 0; }
   <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.6 2.5L16 9.5"/></g></symbol>
   <symbol id="i-link" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></g></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20.5s-7.5-4.6-9.3-9.6C1.5 7.4 3.7 4 7.2 4c2 0 3.6 1.1 4.8 2.8C13.2 5.1 14.8 4 16.8 4c3.5 0 5.7 3.4 4.5 6.9-1.8 5-9.3 9.6-9.3 9.6Z"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4a1 1 0 0 0 1 1h2l5 4V5L6 9H4a1 1 0 0 0-1 1Z"/><path d="M15 9a4 4 0 0 1 0 6M18 6a8 8 0 0 1 0 12"/></g></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 5 7 4.5 3.5 5v13c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5c-3.5-.5-6.5 0-8.5 1.5Z"/><path d="M12 6.5v13"/></g></symbol>
+  <symbol id="i-columns" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18L12 3.5 3 9ZM5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20.5h18"/></g></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4.5c4-2 7 2 14 0v9c-7 2-10-2-14 0"/></g></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></g></symbol>
 </svg>
 
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="Dad's Day In Court home">
+    <a class="brand" href="index.html" aria-label="Dad's Day In Court home">
       <img src="assets/ddic-logo.png" width="560" height="154" alt="Dad's Day In Court">
     </a>
     <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
@@ -391,10 +38,10 @@ p { margin: 0; }
     </button>
     <nav class="nav" id="site-nav" aria-label="Main">
       <ul>
-        <li><a href="/" aria-current="page">Home</a></li>
-        <li><a href="/my-story/">My Story</a></li>
-        <li><a href="/videos/">Videos</a></li>
-        <li><a href="/the-beak/">The Beak</a></li>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="my-story.html">My Story</a></li>
+        <li><a href="videos.html">Videos</a></li>
+        <li><a href="the-beak.html">The Beak</a></li>
       </ul>
       <a class="btn btn--sky" href="#support">
         <svg aria-hidden="true"><use href="#i-heart"/></svg>Support DDIC
@@ -414,7 +61,7 @@ p { margin: 0; }
         <p class="lede rise rise-3">My journey through family court changed my life. What I experienced as a father made me realize that there are conversations about family court, fatherhood, and children's lives that deserve to be heard.</p>
         <p class="rise rise-3">Dad's Day In Court exists to share those experiences, ask difficult questions, and give fathers a place to speak openly about what they face.</p>
         <div class="btn-row rise rise-4">
-          <a class="btn btn--sky" href="/my-story/">
+          <a class="btn btn--sky" href="my-story.html">
             <svg aria-hidden="true"><use href="#i-play"/></svg>Watch My Story
           </a>
           <a class="btn btn--ghost-light" href="#videos">Explore Our Videos</a>
@@ -449,7 +96,7 @@ p { margin: 0; }
           <p>This isn't about claiming that every father is right or every mother is wrong. It's about recognizing that every family's circumstances are different, that children's best interests must remain central, and that the experiences of parents deserve to be understood.</p>
         </div>
         <p class="signoff">My case ended. My story didn't.</p>
-        <a class="btn btn--outline" href="/my-story/">Read My Story <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline" href="my-story.html">Read My Story <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </section>
@@ -462,7 +109,7 @@ p { margin: 0; }
           <span class="eyebrow">Real Stories. Important Conversations.</span>
           <h2 class="h2" id="videos-title">Let's Talk About What Happens in Family Court.</h2>
         </div>
-        <a class="btn btn--outline" href="/videos/">Watch All Videos <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--outline" href="videos.html">Watch All Videos <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="videos-intro">
         <p class="lede">Family court can involve difficult decisions about custody, child support, legal expenses, parental relationships, and the future of a family.</p>
@@ -473,7 +120,7 @@ p { margin: 0; }
       </div>
 
       <div class="video-grid">
-        <a class="video-card" href="/videos/">
+        <a class="video-card" href="videos.html">
           <div class="thumb">
             <span class="play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
             <span class="thumb-title" aria-hidden="true">Why DDIC Exists</span>
@@ -484,7 +131,7 @@ p { margin: 0; }
             <span class="cta">Watch video <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
           </div>
         </a>
-        <a class="video-card v2" href="/videos/">
+        <a class="video-card v2" href="videos.html">
           <div class="thumb">
             <span class="play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
             <span class="thumb-title" aria-hidden="true">I Fought for My Children</span>
@@ -495,7 +142,7 @@ p { margin: 0; }
             <span class="cta">Watch video <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
           </div>
         </a>
-        <a class="video-card v3" href="/videos/">
+        <a class="video-card v3" href="videos.html">
           <div class="thumb">
             <span class="play" aria-hidden="true"><svg><use href="#i-play"/></svg></span>
             <span class="thumb-title" aria-hidden="true">Inside Family Court</span>
@@ -520,7 +167,7 @@ p { margin: 0; }
         <p>But telling stories is only one part of the picture.</p>
         <p>The Beak takes the conversation further through advocacy, public education, and efforts to improve the family court system.</p>
         <p>Together, Dad's Day In Court and The Beak connect personal experiences with a broader conversation about what needs to change.</p>
-        <a class="btn btn--light" href="/the-beak/">Discover The Beak <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--light" href="the-beak.html">Discover The Beak <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
 
       <div class="bridge">
@@ -561,7 +208,7 @@ p { margin: 0; }
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Producing videos</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Raising awareness about family court</li>
           </ul>
-          <a class="btn btn--sky" href="/donate/">
+          <a class="btn btn--sky" href="#support">
             <svg aria-hidden="true"><use href="#i-heart"/></svg>Support Dad's Day In Court
           </a>
         </div>
@@ -581,16 +228,16 @@ p { margin: 0; }
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="/my-story/">My Story</a></li>
-          <li><a href="/videos/">Videos</a></li>
-          <li><a href="/the-beak/">The Beak</a></li>
-          <li><a href="/donate/">Support DDIC</a></li>
+          <li><a href="my-story.html">My Story</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="the-beak.html">The Beak</a></li>
+          <li><a href="#support">Support DDIC</a></li>
         </ul>
       </div>
       <div>
         <h4>Connect</h4>
         <ul>
-          <li><a href="/videos/">YouTube</a></li>
+          <li><a href="videos.html">YouTube</a></li>
           <li><a href="https://thebeak.us/" target="_blank" rel="noopener">thebeak.us</a></li>
         </ul>
       </div>
