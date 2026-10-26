@@ -32,6 +32,10 @@ Follow these rules on every page you build or edit.
 ## Reusable templates (Templates → Saved Templates)
 - Forms: **Book A Strategy Call Form** (hero) and **Contact Us Form** (footer) – templates contain only the form; card text stays on the page.
 - **Featured In The Media**, **Reviews Section**, **Our Approach Section**.
+- Case study cards (grid + "View All Case Studies" button; section heading stays on the page):
+  **Case Studies - True Protein, Total Image Group, Snap Shades** (eCommerce, Enterprise) and
+  **Case Studies - Uno Home Loans, True Protein, Circles Life** (Sydney).
+- Client logo grids must match "Featured In The Media": 6 columns, white bordered cells ~102px tall.
 - "Book A Strategy Call" buttons link to `/request-an-investment-briefing/`.
 
 ## Working safely
