@@ -3,6 +3,11 @@
 The site is built on the dev WordPress install (dev.marketixdigital.com.au) with Elementor + Elementor Pro.
 Follow these rules on every page you build or edit.
 
+## Content
+- **Content must match the live page (marketixdigital.com.au) exactly.** Don't add copy, section labels, buttons or paragraphs
+  that the live page doesn't have, and don't drop any (including links like "Local SEO Agency" or "Get a proposal").
+  Design changes are fine; wording changes are not. Before finishing a page, diff its visible text against the live page.
+
 ## Layout & spacing
 - Top-level sections are boxed at **1400px**. Section padding: 100px top/bottom (40px on mobile), 10px left/right.
 - On mobile every section's content sits **20px** from the screen edge. Work out nested padding so it adds up to 20px
@@ -28,7 +33,7 @@ Follow these rules on every page you build or edit.
 - Never put invented statistics in illustrations or copy.
 
 ## Typography & colour (global styles)
-- Section label: `Top title` + Secondary colour. H2: `Secondary` typography + Primary colour. Body: `Text` + Text colour.
+- Section label (only where the live page has one): `Top title` + Secondary colour. H2: `Secondary` typography + Primary colour. Body: `Text` + Text colour.
 - Card titles: `Heading 20` (bold, ID 380c6e8) in Primary.
 
 ## Reusable templates (Templates → Saved Templates)
