@@ -16,6 +16,8 @@ Follow these rules on every page you build or edit.
   ("View case study →", "Get Started"), give the widget directly above the action `_flex_size: grow` (Advanced → Layout → Size: Grow)
   so the actions sit at the same height in every card of a row. Keep the grid's items stretched (don't set align-items: center).
 - Card style: white background, 1px `border black` border, 16px radius, soft shadow; 32px padding (20px mobile).
+- **Cards on dark navy sections** use the homepage "Selected Work" style instead of white: background `blue front bg`
+  (#121F3D), border `border white`, hover border `Secondary`, titles `White`, body `white text`.
 
 ## Widgets & icons
 - **No HTML widgets.** Build everything with native Elementor widgets.
