@@ -39,6 +39,8 @@ Follow these rules on every page you build or edit.
 ## Reusable templates (Templates → Saved Templates)
 - Forms: **Book A Strategy Call Form** (hero) and **Contact Us Form** (footer) – templates contain only the form; card text stays on the page.
 - **Featured In The Media**, **Reviews Section**, **Our Approach Section**.
+- **Founder Video Section** (ID 2070): white section with a navy panel – heading, copy, callout and the founder YouTube video.
+  Embed with a Template widget in a zero-padding wrapper container (as on the homepage); keep it next to non-white sections.
 - Case study cards (grid + "View All Case Studies" button; section heading stays on the page):
   **Case Studies - True Protein, Total Image Group, Snap Shades** (eCommerce, Enterprise) and
   **Case Studies - Uno Home Loans, True Protein, Circles Life** (Sydney).
