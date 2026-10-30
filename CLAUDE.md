@@ -53,11 +53,6 @@ Follow these rules on every page you build or edit.
 - Client logo grids must match "Featured In The Media": 6 columns, white bordered cells ~102px tall.
 - "Book A Strategy Call" buttons link to `/request-an-investment-briefing/`.
 
-## Header menu
-- Desktop header (template 23) uses Elementor's **Mega Menu** widget: grouped columns with `marketix-glyph-*` icons (Icon List,
-  class `mx-mm-list`; column titles class `mx-mm-head`). Edit desktop menu items there, not in Appearance → Menus.
-  The mobile popup (544) still uses the WordPress "primary-menu", so add new pages to both.
-
 ## Working safely
 - Before saving a page, re-fetch it and confirm `modified` hasn't changed (the user edits in Elementor too).
 - Preview drafts/changes on a temporary password-protected copy, then delete it. Clear Elementor's CSS cache after saving.
