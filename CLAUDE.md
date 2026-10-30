@@ -46,9 +46,10 @@ Follow these rules on every page you build or edit.
 - Case study cards (grid + "View All Case Studies" button; section heading stays on the page):
   **Case Studies - True Protein, Total Image Group, Snap Shades** (eCommerce, Enterprise) and
   **Case Studies - Uno Home Loans, True Protein, Circles Life** (Sydney).
-- **Areas Map & Buttons** (ID 2322): city buttons + Google Map for the "Areas We Service" section. The label, H2 and intro text stay
-  on the page above a Template widget. Hovering a city swaps the map to that city (Custom Code "Areas Map Hover", ID 2319,
-  targets the `mx-areas` class), so keep city names as the button titles.
+- **Areas We Service** (ID 2333): the whole areas block – label, H2, intro, "SEO Agency <City>" buttons and the branded
+  Australia map (`marketix-illus-australia-map.svg`) with one pin per city. Hovering a button highlights its pin (Custom Code
+  "Areas Map Pins", ID 2319, uses the `mx-area-btns` / `mx-area-map` / `mx-pin` classes). Embed with a Template widget inside
+  the page's own section (the section keeps its background/padding); keep pin titles equal to the city names.
 - Client logo grids must match "Featured In The Media": 6 columns, white bordered cells ~102px tall.
 - "Book A Strategy Call" buttons link to `/request-an-investment-briefing/`.
 
