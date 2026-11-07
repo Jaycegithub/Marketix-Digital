@@ -9,9 +9,19 @@ Follow these rules on every page you build or edit.
   Design changes are fine; wording changes are not. Before finishing a page, diff its visible text against the live page.
 
 ## Layout & spacing
-- Top-level sections are boxed at **1400px**. Section padding: 100px top/bottom (40px on mobile), 10px left/right.
-- On mobile every section's content sits **20px** from the screen edge. Work out nested padding so it adds up to 20px
-  (e.g. section 10px + inner container 10px → deeper containers get 0px). Never zero a parent container's padding blindly.
+- Top-level sections are boxed at **1400px**.
+- **Padding standard (global, not optional)** – identify the container hierarchy first, then apply:
+  1. **Main section** (top-level container): `100px 10px` (mobile keeps 40px top/bottom, 10px sides).
+  2. **Flex/Grid parent whose child containers have NO background**: `5px 0 0 0`.
+  3. **Flex/Grid parent whose child containers HAVE a background/image**: `10px` all sides.
+  4. **Container with only direct content** (no nested containers): leave Elementor's default `10px` (remove custom padding).
+  5. Containers with their own background/border/shadow (cards, panels) keep their own padding – don't override designs.
+  - Edge cases: a plain leaf container sitting beside background cards inside a 10px parent gets `0`; a leaf container inside a
+    "mixed" parent (content + containers, parent keeps default 10px) gets `0`; a widget placed directly in a section or in a
+    `5px 0 0 0` parent gets `_padding: 0 10px 0 10px`. Template wrapper sections (e.g. Founder Video) stay at 0.
+  - Remove tablet/mobile padding overrides on containers the rules set, so there's no double padding.
+  - **Priority:** content must sit **20px** from the viewport edge on mobile and tablet, consistently across sections.
+    Verify by measuring on a preview (390 / 768 / 1440px) before saving. Script: `scratchpad/wp/v78/padfix.py <page_id> dry|preview|save`.
 - Use as few containers as possible. If something can be a single widget (Icon Box, Image, Heading), don't wrap it in a container.
 - Adjacent sections must not share the same background. Alternate white (`White`), light blue (`Light Blue`) and dark navy (`Primary`);
   clients want dark blue sections used, not only white/light blue.
