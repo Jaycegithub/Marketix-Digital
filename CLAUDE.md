@@ -10,16 +10,21 @@ Follow these rules on every page you build or edit.
 
 ## Layout & spacing
 - Top-level sections are boxed at **1400px**.
-- **Padding standard (global, not optional)** – identify the container hierarchy first, then apply:
-  1. **Main section** (top-level container): `100px 10px` (mobile keeps 40px top/bottom, 10px sides).
-     If a container **with a background** (CTA panel, card grid item) sits directly in the section, the section's sides become
-     `20px` (10px section + 10px background rule) so the panel edge is 20px from the viewport.
-  - **No redundant wrappers:** never put a single row/column/grid container inside a section just to lay out its children –
-    make the section itself the flexbox/grid (direction, gap, alignment on the section). Script: `scratchpad/wp/v78/flatten.py`.
+- **Padding standard (global, not optional)** – source: the client's "Padding Arrangement for creating page" Google Doc
+  (1iYNxnni5XS89mHp5cFb9-SfxZRD90cNU2sg-f546Nh0). Identify the container hierarchy first, then apply:
+  1. **Main section** (top-level container): always `100px 10px` (mobile keeps 40px top/bottom, 10px sides).
   2. **Flex/Grid parent whose child containers have NO background**: `5px 0 0 0`.
-  3. **Flex/Grid parent whose child containers HAVE a background/image**: `10px` all sides.
-  4. **Container with only direct content** (no nested containers): leave Elementor's default `10px` (remove custom padding).
-  5. Containers with their own background/border/shadow (cards, panels) keep their own padding – don't override designs.
+  3. **Flex/Grid parent whose child containers HAVE a background/image**: `10px` all sides. When a section's children are
+     background cards, keep (or add) this 10px Flex/Grid wrapper inside the section – it's required, not redundant.
+  4. **Section with ONLY ONE child container that has a background** (e.g. a CTA panel): add an **"Inner Content" container
+     (`10px` padding)** inside the background container and put all the content in it; the inner container takes the panel's
+     row/column layout. The background container keeps its background and its desktop design padding but gets no extra side
+     padding on tablet/mobile (section 10 + inner 10 = 20px). Leaf containers inside the inner container get `0`.
+  5. **Container with only direct content** (no nested containers): leave Elementor's default `10px` (remove custom padding).
+  6. Containers with their own background/border/shadow (cards, panels) keep their own padding – don't override designs.
+  - **No redundant wrappers:** don't put a single row/column wrapper whose children have no background inside a section –
+    make the section itself the flexbox/grid. Only create extra containers when rules 3/4 require them.
+    Script: `scratchpad/wp/v78/flatten.py`.
   - Edge cases: a plain leaf container sitting beside background cards inside a 10px parent gets `0`; a leaf container inside a
     "mixed" parent (content + containers, parent keeps default 10px) gets `0`; a widget placed directly in a section or in a
     `5px 0 0 0` parent gets `_padding: 0 10px 0 10px`. Template wrapper sections (e.g. Founder Video) stay at 0.
