@@ -12,6 +12,10 @@ Follow these rules on every page you build or edit.
 - Top-level sections are boxed at **1400px**.
 - **Padding standard (global, not optional)** – identify the container hierarchy first, then apply:
   1. **Main section** (top-level container): `100px 10px` (mobile keeps 40px top/bottom, 10px sides).
+     If a container **with a background** (CTA panel, card grid item) sits directly in the section, the section's sides become
+     `20px` (10px section + 10px background rule) so the panel edge is 20px from the viewport.
+  - **No redundant wrappers:** never put a single row/column/grid container inside a section just to lay out its children –
+    make the section itself the flexbox/grid (direction, gap, alignment on the section). Script: `scratchpad/wp/v78/flatten.py`.
   2. **Flex/Grid parent whose child containers have NO background**: `5px 0 0 0`.
   3. **Flex/Grid parent whose child containers HAVE a background/image**: `10px` all sides.
   4. **Container with only direct content** (no nested containers): leave Elementor's default `10px` (remove custom padding).
