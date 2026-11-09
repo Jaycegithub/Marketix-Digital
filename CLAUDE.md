@@ -56,7 +56,11 @@ Follow these rules on every page you build or edit.
 - Card titles: `Heading 20` (bold, ID 380c6e8) in Primary.
 
 ## Reusable templates (Templates → Saved Templates)
-- Forms: **Book A Strategy Call Form** (hero) and **Contact Us Form** (footer) – templates contain only the form; card text stays on the page.
+- Forms: **Book A Strategy Call Form** (ID 1176, hero) and **Contact Us Form** (ID 1178, footer) – templates contain only the form;
+  card text stays on the page. Which hero form/text each page uses is set in the client's tracker sheet (column D):
+  - **SEO Form - General** = template 1176 with the current card text – don't edit it.
+  - **Google Ads Form** (Adwords, PPC Agency Sydney) and **Search Intelligence Form** = template 1176, only the card text differs.
+  - **Digital PR Form** (ID 2903) = same form without the Annual Revenue field; its card has no footnote.
 - **Featured In The Media**, **Reviews Section**, **Our Approach Section**.
 - **Founder Video Section** (ID 2070): white section with a navy panel – heading, copy, callout and the founder YouTube video.
   Embed with a Template widget in a zero-padding wrapper container (as on the homepage); keep it next to non-white sections.
