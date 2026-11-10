@@ -93,3 +93,8 @@ Follow these rules on every page you build or edit.
 - Elementor performance settings on: local Google Fonts, optimized image loading, lazy-load background images.
 - Keep PageSpeed green: upload images as WebP (featured images ≤1200px wide), give image links alt text, keep 12–14px
   labels on Light Blue sections at `#3962DE` (Secondary `#3D68EA` fails contrast there), underline inline text links.
+- **WP-Optimize** (configured, settings backup exported): page cache on (24h, scheduled preload), gzip on, static file
+  headers 365 days, minify on (CSS+JS minified, CSS merged, HTML minify off). **Don't enable "Defer all JS" or JS merging** –
+  tested: it breaks / delays the mobile menu popup. Purge the page cache after editing pages via the REST API
+  (saves in the Elementor editor purge automatically). **2927** preloads the 4 Poppins woff2 files (update if Elementor
+  regenerates its local fonts).
