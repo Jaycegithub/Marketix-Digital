@@ -83,3 +83,13 @@ Follow these rules on every page you build or edit.
 ## Working safely
 - Before saving a page, re-fetch it and confirm `modified` hasn't changed (the user edits in Elementor too).
 - Preview drafts/changes on a temporary password-protected copy, then delete it. Clear Elementor's CSS cache after saving.
+
+## Tracking, schema & performance (Elementor → Custom Code)
+- **2910 Tracking Tags** (site-wide, head): GSC meta + GA4 `G-FDJ8VGTY39`, GTM `GTM-WNVB8TQ`, Bing UET `283014674` (same IDs as live).
+  The scripts load on the visitor's first interaction or 10s after load (keeps mobile PageSpeed green) – don't revert to eager loading.
+- **2911** site-wide schema (Corporation/LocalBusiness/FAQ) and **2912** homepage schema – copied verbatim from live.
+- **2914** homepage hero image preload (update it if the hero image changes). **2915** accessibility fixes (tap targets,
+  loop list roles, menu-icon label, screen-reader text on "Read More").
+- Elementor performance settings on: local Google Fonts, optimized image loading, lazy-load background images.
+- Keep PageSpeed green: upload images as WebP (featured images ≤1200px wide), give image links alt text, keep 12–14px
+  labels on Light Blue sections at `#3962DE` (Secondary `#3D68EA` fails contrast there), underline inline text links.
