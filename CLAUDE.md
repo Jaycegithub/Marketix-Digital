@@ -28,6 +28,8 @@ Follow these rules on every page you build or edit.
   - Edge cases: a plain leaf container sitting beside background cards inside a 10px parent gets `0`; a leaf container inside a
     "mixed" parent (content + containers, parent keeps default 10px) gets `0`; a widget placed directly in a section or in a
     `5px 0 0 0` parent gets `_padding: 0 10px 0 10px`. Template wrapper sections (e.g. Founder Video) stay at 0.
+  - A column whose *parent* panel carries the background (e.g. the white form half of the Contact Us panel) is part of that
+    panel's design: it keeps its design padding (56/48px, tablet 40px, mobile 30/20px), not the default 10px.
   - Remove tablet/mobile padding overrides on containers the rules set, so there's no double padding.
   - **Priority:** content must sit **20px** from the viewport edge on mobile and tablet, consistently across sections.
     Verify by measuring on a preview (390 / 768 / 1440px) before saving. Script: `scratchpad/wp/v78/padfix.py <page_id> dry|preview|save`.
