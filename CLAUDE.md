@@ -87,6 +87,10 @@ Follow these rules on every page you build or edit.
 ## Tracking, schema & performance (Elementor → Custom Code)
 - **2910 Tracking Tags** (site-wide, head): GSC meta + GA4 `G-FDJ8VGTY39`, GTM `GTM-WNVB8TQ`, Bing UET `283014674` (same IDs as live).
   The scripts load on the visitor's first interaction or 10s after load (keeps mobile PageSpeed green) – don't revert to eager loading.
+- **Test tracking (dev only):** 2910 also loads test GTM containers `GTM-KKMXLBHX` + `GTM-T4CHD883` when the hostname starts
+  with `dev.` (never on the live domain – don't write the dev domain into that check, Better Search Replace would rewrite it).
+  Custom Code **3018** pushes dataLayer events `phone_click`, `email_click` and `form_submission` (form_name, form_page,
+  form_page_title – sent on /thank-you/). GTM import file for the test container: `Marketix-DEV-GTM-import.json`.
 - **2911** site-wide schema (Corporation/LocalBusiness/FAQ) and **2912** homepage schema – copied verbatim from live.
 - **2914** homepage hero image preload (update it if the hero image changes). **2915** accessibility fixes (tap targets,
   loop list roles, menu-icon label, screen-reader text on "Read More").
