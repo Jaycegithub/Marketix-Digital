@@ -1,6 +1,6 @@
 {
   "exportFormatVersion": 2,
-  "exportTime": "2026-11-11 06:56:16",
+  "exportTime": "2026-11-11 06:59:15",
   "containerVersion": {
     "path": "accounts/0/containers/0/versions/0",
     "accountId": "0",
@@ -34,7 +34,8 @@
           "2147479553"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
-        "notes": "Set the GA4 Measurement ID variable to the TEST property ID (G-...)."
+        "notes": "PAUSED on purpose: page views for G-1FFT34YXYM already come from the Google tag container GTM-T4CHD883 on the dev site. Unpausing doubles page views.",
+        "paused": true
       },
       {
         "accountId": "0",
@@ -517,7 +518,7 @@
           {
             "type": "TEMPLATE",
             "key": "value",
-            "value": "G-XXXXXXXXXX"
+            "value": "G-1FFT34YXYM"
           }
         ]
       },
