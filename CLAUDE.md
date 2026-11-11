@@ -103,7 +103,10 @@ Follow these rules on every page you build or edit.
 ## Launch setup (pre go-live, Nov 2026)
 - Form leads go to **hello@marketix.info** (form templates 1176, 1178, 782, 2903, 2906, 2908). Every form's actions are
   email + save-to-database + **redirect to `/thank-you/`** (page 3012, noindex, copied from live). Tracking tags load
-  immediately on /thank-you/ (2910), and Custom Code 3013 fires the Meta Pixel `Lead` event there - keep both for conversions.
+  immediately on all `/thank-you*` pages (2910), and Custom Code 3013 fires the Meta Pixel `Lead` event + `cg_convert` on
+  /thank-you/ (as on live) - keep both for conversions. Download thank-you pages: `/thank-you-tradie-download/` (3016, its
+  beacon.by link is dead on live too) and `/thank-you-7-killer-ways-to-get-more-calls/` (3017, PDF in the media library;
+  old `/downloads/…pdf` URL redirects to it). All three are noindex.
 - New pages need the Astra layout meta copied from an existing page (`ast-site-content-layout: full-width-container`,
   `site-sidebar-layout: no-sidebar`, `site-post-title: disabled`) or their sections render boxed.
 - **Every page's contact section** (incl. the homepage) embeds the **Contact Us Form** template (1178) with a Template widget;
