@@ -100,7 +100,8 @@ Follow these rules on every page you build or edit.
 - **WP-Optimize** (configured, settings backup exported): page cache on (24h, scheduled preload), gzip on, static file
   headers 365 days, minify on for **JS only** (HTML minify off). **Keep WP-Optimize CSS processing OFF** – its merged CSS goes stale when
   Elementor regenerates CSS (pages lost styling: giant text). **Don't enable "Defer all JS" or JS merging** – tested: it
-  breaks / delays the mobile menu popup. Purge the page cache after editing pages via the REST API
+  breaks / delays the mobile menu popup. **Always purge the WP-Optimize page cache right after clearing Elementor's CSS cache** (cached HTML keeps pointing at the deleted
+  `post-<id>.css` files: pages lose their styling and scroll sideways on mobile until purged). Purge the page cache after editing pages via the REST API
   (saves in the Elementor editor purge automatically). **2927** preloads the 4 Poppins woff2 files (update if Elementor
   regenerates its local fonts).
 
