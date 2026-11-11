@@ -105,7 +105,8 @@ Follow these rules on every page you build or edit.
   regenerates its local fonts).
 
 ## Launch setup (pre go-live, Nov 2026)
-- Form leads go to **hello@marketix.info** (form templates 1176, 1178, 782, 2903, 2906, 2908). Every form's actions are
+- Form leads go to **hello@marketix.info** (form templates 1176, 1178, 782, 2903, 2906, 2908), with two internal addresses in
+  BCC (Email action → BCC; keep them when editing forms). Every form's actions are
   email + save-to-database + **redirect to `/thank-you/`** (page 3012, noindex, copied from live). Tracking tags load
   immediately on all `/thank-you*` pages (2910), and Custom Code 3013 fires the Meta Pixel `Lead` event + `cg_convert` on
   /thank-you/ (as on live) - keep both for conversions. Download thank-you pages: `/thank-you-tradie-download/` (3016, its
