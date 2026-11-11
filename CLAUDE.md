@@ -104,8 +104,10 @@ Follow these rules on every page you build or edit.
 - Form leads go to **hello@marketix.info** (all 7 form widgets: page 609, templates 1176, 1178, 782, 2903, 2906, 2908).
 - Rank Math → Redirections: `/blog/*` → `/insights/*`; `/seo-agency-sydney-old/` → `/seo-agency-sydney/`;
   `/blog/seo-statistics-australia-2020/` and `/insights/seo-statistics-australia-2020/` → `/insights/local-seo-statistics-101/`;
-  `/Terms of Service.pdf` → the new PDF. Three **temporary 302 regex rules** ("city", "industry", "other") forward the
-  79 live pages not yet rebuilt to the same path on old.marketixdigital.com.au. **When you build one of those pages,
-  remove its path from the regex rule**, or the redirect will hide the new page. List: `scratchpad/wp/v85/forward_rules.json`.
+  `/Terms of Service.pdf` → the new PDF. Temporary **302 regex rules** for pages not yet rebuilt: the tracker's unbuilt
+  service + city pages (11) → homepage; unbuilt industry pages (51, incl. eCommerce Brisbane/Melbourne, Fashion SEO) →
+  `/industries/`; 19 other old pages (tradies, ad landing pages `-ga`, Central Coast, Wollongong…) → same path on
+  old.marketixdigital.com.au. **When you build one of those pages, remove its path from its regex rule**, or the redirect
+  hides the new page. Lists: `scratchpad/wp/v85/redirect_final.json`.
 - Redirect destinations are stored with the dev domain; Better Search Replace (dev → main, all tables) at launch fixes them.
 - Schema logo now lives in the media library (ID 2995), not on the old site's /mt-content/ path.
