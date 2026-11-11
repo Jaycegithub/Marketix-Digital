@@ -101,7 +101,11 @@ Follow these rules on every page you build or edit.
   regenerates its local fonts).
 
 ## Launch setup (pre go-live, Nov 2026)
-- Form leads go to **hello@marketix.info** (all 7 form widgets: page 609, templates 1176, 1178, 782, 2903, 2906, 2908).
+- Form leads go to **hello@marketix.info** (form templates 1176, 1178, 782, 2903, 2906, 2908).
+- **Every page's contact section** (incl. the homepage) embeds the **Contact Us Form** template (1178) with a Template widget;
+  each page keeps its own left-panel text. Don't put inline form widgets in contact sections.
+- **Category pages** (/insights/category/…) use the Theme Builder archive template **3005** (Insights hero + category pills +
+  loop grid on the current query). Pill styles and the full-width fix live in Custom Code 2915. Posts per page = 9.
 - Rank Math → Redirections: `/blog/*` → `/insights/*`; `/seo-agency-sydney-old/` → `/seo-agency-sydney/`;
   `/blog/seo-statistics-australia-2020/` and `/insights/seo-statistics-australia-2020/` → `/insights/local-seo-statistics-101/`;
   `/Terms of Service.pdf` → the new PDF. Temporary **302 regex rules** for pages not yet rebuilt: the tracker's unbuilt
