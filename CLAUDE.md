@@ -118,9 +118,15 @@ Follow these rules on every page you build or edit.
   each page keeps its own left-panel text. Don't put inline form widgets in contact sections.
 - **Category pages** (/insights/category/…) use the Theme Builder archive template **3005** (Insights hero + category pills +
   loop grid on the current query). Pill styles and the full-width fix live in Custom Code 2915. Posts per page = 9.
-- Rank Math → Redirections: `/blog/*` → `/insights/*`; `/seo-agency-sydney-old/` → `/seo-agency-sydney/`;
-  `/blog/seo-statistics-australia-2020/` and `/insights/seo-statistics-australia-2020/` → `/insights/local-seo-statistics-101/`;
-  `/Terms of Service.pdf` → the new PDF. Temporary **302 regex rules** for pages not yet rebuilt: the tracker's unbuilt
+- **Permanent redirects live in `.htaccess`** (edit via Rank Math → General Settings → Edit .htaccess; back up first), above
+  `# BEGIN WordPress`, copy in `qa/htaccess-marketix-rules.txt`: one-hop HTTPS + non-www (Cloudflare-safe), `/blog/` →
+  `/insights/`, `/blog/<slug>` → `/insights/<slug>/` (12 articles deleted on live → `/insights/`),
+  `/blog/seo-statistics-australia-2020/` → `/insights/local-seo-statistics-101/`, `/seo-agency-sydney-old/`,
+  the `/+61280338464` link artifact → `/`, the old `/mt-content/…pallet_racking…pdf` and `/Terms of Service.pdf` → new PDFs.
+  Targets are relative so the block works on dev and production. Don't duplicate these in Rank Math.
+- Rank Math → Redirections keeps `/insights/seo-statistics-australia-2020/` → `/insights/local-seo-statistics-101/`, the
+  7 Killer Ways PDF 301, and the temporary rules below.
+  Temporary **302 regex rules** for pages not yet rebuilt: the tracker's unbuilt
   service + city pages (11) → homepage; unbuilt industry pages (51, incl. eCommerce Brisbane/Melbourne, Fashion SEO) →
   `/industries/`; 19 other old pages (tradies, ad landing pages `-ga`, Central Coast, Wollongong…) → same path on
   old.marketixdigital.com.au. **When you build one of those pages, remove its path from its regex rule**, or the redirect
