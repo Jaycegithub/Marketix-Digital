@@ -99,3 +99,13 @@ Follow these rules on every page you build or edit.
   breaks / delays the mobile menu popup. Purge the page cache after editing pages via the REST API
   (saves in the Elementor editor purge automatically). **2927** preloads the 4 Poppins woff2 files (update if Elementor
   regenerates its local fonts).
+
+## Launch setup (pre go-live, Nov 2026)
+- Form leads go to **hello@marketix.info** (all 7 form widgets: page 609, templates 1176, 1178, 782, 2903, 2906, 2908).
+- Rank Math → Redirections: `/blog/*` → `/insights/*`; `/seo-agency-sydney-old/` → `/seo-agency-sydney/`;
+  `/blog/seo-statistics-australia-2020/` and `/insights/seo-statistics-australia-2020/` → `/insights/local-seo-statistics-101/`;
+  `/Terms of Service.pdf` → the new PDF. Three **temporary 302 regex rules** ("city", "industry", "other") forward the
+  79 live pages not yet rebuilt to the same path on old.marketixdigital.com.au. **When you build one of those pages,
+  remove its path from the regex rule**, or the redirect will hide the new page. List: `scratchpad/wp/v85/forward_rules.json`.
+- Redirect destinations are stored with the dev domain; Better Search Replace (dev → main, all tables) at launch fixes them.
+- Schema logo now lives in the media library (ID 2995), not on the old site's /mt-content/ path.
