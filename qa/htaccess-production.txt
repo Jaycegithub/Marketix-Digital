@@ -53,6 +53,8 @@ allow from all
 # This replaces the old 2021 India IP list (India = IN below).
 <IfModule mod_rewrite.c>
 RewriteEngine On
+# Never block Google's crawlers and PageSpeed/Lighthouse (Google runs these from data centres in India too)
+RewriteCond %{HTTP_USER_AGENT} !(Googlebot|Google-InspectionTool|Chrome-Lighthouse|Google-PageSpeed|AdsBot-Google|Mediapartners-Google|Storebot-Google|bingbot) [NC]
 RewriteCond %{HTTP:CF-IPCountry} ^(AF|AM|AZ|BH|BD|BT|BN|KH|CN|CY|GE|IN|ID|IR|IQ|IL|JO|KZ|KP|KR|KW|KG|LA|LB|MO|MY|MV|MN|MM|NP|OM|PK|QA|SA|LK|SY|TJ|TH|TL|TR|TM|AE|UZ|VN|YE|PS)$
 RewriteRule ^ - [F]
 </IfModule>
