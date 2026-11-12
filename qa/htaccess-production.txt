@@ -13,6 +13,18 @@ RewriteRule ^ - [F]
 </IfModule>
 # END Country block
 
+# BEGIN IP blocking (kept from the old site at the client's request)
+# PASTE HERE, unchanged from the old .htaccess:
+#   1. the 10 "deny from" lines after "<Files 403.shtml>" (62.102.148.68 ... 113.194.138.51)
+#   2. the whole India list, from "# Free IP2Location Firewall List by Country (India)" to "</Limit>"
+#   3. "deny from 103.214.20.99" and "deny from 91.108.193.252"
+# Then DELETE these 8 lines from the list - they are Cloudflare's own servers, and every visitor
+# now arrives through Cloudflare, so they would block real visitors:
+#   deny from 162.158.44.0/22    deny from 162.158.48.0/23    deny from 162.158.50.0/24
+#   deny from 162.158.52.0/22    deny from 162.158.226.0/23   deny from 172.68.160.0/22
+#   deny from 172.68.166.0/23    deny from 172.69.104.0/22
+# END IP blocking
+
 # BEGIN Other domains on this account
 <IfModule mod_rewrite.c>
 RewriteEngine On
