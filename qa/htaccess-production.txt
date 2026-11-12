@@ -1,53 +1,6 @@
 Options +FollowSymLinks -Indexes
 
-<Files 403.shtml>
-order allow,deny
-allow from all
-</Files>
-
-# BEGIN Country block (kept from the old site; uses Cloudflare's country header)
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{HTTP:CF-IPCountry} ^(AF|AM|AZ|BH|BD|BT|BN|KH|CN|CY|GE|IN|ID|IR|IQ|IL|JO|KZ|KP|KR|KW|KG|LA|LB|MO|MY|MV|MN|MM|NP|OM|PK|QA|SA|LK|SY|TJ|TH|TL|TR|TM|AE|UZ|VN|YE|PS)$
-RewriteRule ^ - [F]
-</IfModule>
-# END Country block
-
-# BEGIN IP blocking (kept from the old site at the client's request)
-# PASTE HERE, unchanged from the old .htaccess:
-#   1. the 10 "deny from" lines after "<Files 403.shtml>" (62.102.148.68 ... 113.194.138.51)
-#   2. the whole India list, from "# Free IP2Location Firewall List by Country (India)" to "</Limit>"
-#   3. "deny from 103.214.20.99" and "deny from 91.108.193.252"
-# Then DELETE these 8 lines from the list - they are Cloudflare's own servers, and every visitor
-# now arrives through Cloudflare, so they would block real visitors:
-#   deny from 162.158.44.0/22    deny from 162.158.48.0/23    deny from 162.158.50.0/24
-#   deny from 162.158.52.0/22    deny from 162.158.226.0/23   deny from 172.68.160.0/22
-#   deny from 172.68.166.0/23    deny from 172.69.104.0/22
-# END IP blocking
-
-# BEGIN Other domains on this account
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{HTTP_HOST} ^(www\.)?marketix\.info$ [NC]
-RewriteRule ^(.*)$ https://marketixdigital.com.au/$1 [R=301,L]
-RewriteCond %{HTTP_HOST} ^(www\.)?virtualcoworker\.net$ [NC]
-RewriteRule ^(.*)$ https://virtualcoworker.com/$1 [R=301,L]
-</IfModule>
-# END Other domains on this account
-
-# BEGIN Marketix canonical host (HTTPS + non-www, one hop; safe behind Cloudflare)
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
-RewriteCond %{HTTPS} !=on
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteCond %{HTTP:CF-Visitor} !https
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-</IfModule>
-# END Marketix canonical host
-
-# BEGIN Marketix redirects (migrated from MotoCMS)
+# BEGIN Marketix redirects (old site URLs -> new pages)
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteRule ^blog/?$ /insights/ [R=301,L]
@@ -61,6 +14,67 @@ RewriteRule "^Terms of Service\.pdf$" /wp-content/uploads/2026/11/Terms-of-Servi
 RewriteRule ^cool_shade_pro_customer_field_test_report/cool_shade_pro_customer_report/Cool_Shade_Pro_Art_Valley_Field_Test_Report\.html$ https://www.coolshadepro.com/assets/Cool-Shade-Pro-Art-Valley-Field-Test.pdf [R=301,L]
 </IfModule>
 # END Marketix redirects
+
+# BEGIN Other domains and www
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?marketix\.info$ [NC]
+RewriteRule ^(.*)$ https://marketixdigital.com.au/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^(www\.)?virtualcoworker\.net$ [NC]
+RewriteRule ^(.*)$ https://virtualcoworker.com/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.marketixdigital\.com\.au$ [NC]
+RewriteRule ^(.*)$ https://marketixdigital.com.au/$1 [R=301,L]
+</IfModule>
+# END Other domains and www
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access plus 1 month"
+ExpiresByType image/jpeg "access plus 1 month"
+ExpiresByType image/gif "access plus 1 month"
+ExpiresByType image/png "access plus 1 month"
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/pdf "access plus 1 month"
+ExpiresByType text/x-javascript "access plus 1 month"
+ExpiresByType application/x-shockwave-flash "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 year"
+ExpiresDefault "access plus 2 days"
+</IfModule>
+## EXPIRES CACHING ##
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+# BEGIN Blocking (kept from the old site)
+# Country block: India and the other listed countries, using Cloudflare's country header.
+# This replaces the old 2021 India IP list (India = IN below).
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP:CF-IPCountry} ^(AF|AM|AZ|BH|BD|BT|BN|KH|CN|CY|GE|IN|ID|IR|IQ|IL|JO|KZ|KP|KR|KW|KG|LA|LB|MO|MY|MV|MN|MM|NP|OM|PK|QA|SA|LK|SY|TJ|TH|TL|TR|TM|AE|UZ|VN|YE|PS)$
+RewriteRule ^ - [F]
+</IfModule>
+
+# Individual IPs blocked on the old site
+<Limit GET HEAD POST>
+order allow,deny
+allow from all
+deny from 62.102.148.68
+deny from 23.129.64.207
+deny from 23.129.64.100
+deny from 141.255.162.34
+deny from 23.129.64.206
+deny from 185.100.87.207
+deny from 23.129.64.154
+deny from 23.129.64.195
+deny from 218.93.11.178
+deny from 113.194.138.51
+deny from 103.214.20.99
+deny from 91.108.193.252
+</Limit>
+# END Blocking
 
 # BEGIN WordPress
 # The directives (lines) between "BEGIN WordPress" and "END WordPress" are
