@@ -8,6 +8,14 @@ RewriteRule ^(\+|%2B)61280338464/?$ / [R=301,NC,L]
 RewriteRule ^mt-content/uploads/2026/10/marketix_australian_pallet_racking_market_report_2026\.pdf$ /wp-content/uploads/2026/10/marketix_australian_pallet_racking_market_report_2026.pdf [R=301,L]
 RewriteRule "^Terms of Service\.pdf$" /wp-content/uploads/2026/11/Terms-of-Service.pdf [R=301,L]
 RewriteRule ^cool_shade_pro_customer_field_test_report/cool_shade_pro_customer_report/Cool_Shade_Pro_Art_Valley_Field_Test_Report\.html$ https://www.coolshadepro.com/assets/Cool-Shade-Pro-Art-Valley-Field-Test.pdf [R=301,L]
+# Old-site pages (not rebuilt): 4 exist in the old-site copy, the other 15 go to the closest new page
+RewriteRule ^(seo-for-tradies|seo-for-tradies-ga|seo-guide-for-tradies|websites-for-tradies)/?$ https://old.marketixdigital.com.au/marketixdigital.com.au/$1/ [R=302,L]
+RewriteRule ^about/shoaib-mughal/?$ /about/ [R=301,L]
+RewriteRule ^(adwords-experts-sydney|online-marketing-for-tradies-google-adwords-for-tradies)/?$ /adwords/ [R=301,L]
+RewriteRule ^enterprise-seo-agency-sydney-ga/?$ /enterprise-seo/ [R=301,L]
+RewriteRule ^(seo-agency-landing-page|seo-agency-central-coast|seo-agency-wollongong|marketing-for-tradies)/?$ /seo-agency-sydney/ [R=301,L]
+RewriteRule ^(seo-agency-australia|lead-generation)/?$ / [R=301,L]
+RewriteRule ^(7-killer-ways-to-get-more-calls-from-your-website|online-marketing-for-tradies-playbook|seo-guide-for-service-businesses|starting-a-tradie-business|you-wont-believe-how-many-leads-this-business-generates-modern-lead-generation-secrets)/?$ /insights/ [R=301,L]
 </IfModule>
 # END Marketix extra redirects
 
