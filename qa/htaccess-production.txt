@@ -1,0 +1,73 @@
+Options +FollowSymLinks -Indexes
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+# BEGIN Country block (kept from the old site; uses Cloudflare's country header)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP:CF-IPCountry} ^(AF|AM|AZ|BH|BD|BT|BN|KH|CN|CY|GE|IN|ID|IR|IQ|IL|JO|KZ|KP|KR|KW|KG|LA|LB|MO|MY|MV|MN|MM|NP|OM|PK|QA|SA|LK|SY|TJ|TH|TL|TR|TM|AE|UZ|VN|YE|PS)$
+RewriteRule ^ - [F]
+</IfModule>
+# END Country block
+
+# BEGIN Other domains on this account
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?marketix\.info$ [NC]
+RewriteRule ^(.*)$ https://marketixdigital.com.au/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^(www\.)?virtualcoworker\.net$ [NC]
+RewriteRule ^(.*)$ https://virtualcoworker.com/$1 [R=301,L]
+</IfModule>
+# END Other domains on this account
+
+# BEGIN Marketix canonical host (HTTPS + non-www, one hop; safe behind Cloudflare)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTP:CF-Visitor} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+# END Marketix canonical host
+
+# BEGIN Marketix redirects (migrated from MotoCMS)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^blog/?$ /insights/ [R=301,L]
+RewriteRule ^blog/seo-statistics-australia-2020/?$ /insights/local-seo-statistics-101/ [R=301,L]
+RewriteRule ^blog/(addressing-duplicate-content-issues-in-seo|cheap-vs-affordable-seo-services|common-seo-mistakes|guaranteed-seo-services|history-of-seo|how-to-seo-your-tiktok-videos-correctly|local-seo-ranking-factors|seo-gurus-are-annoying|taylor-swift-concert-announcement-sparks-search-trends-down-under|understanding-entity-seo|were-hiring-business-development-manager-seo-google-ads-sydney|what-is-seo-management)/?$ /insights/ [R=301,L]
+RewriteRule ^blog/(.+?)/?$ /insights/$1/ [R=301,L]
+RewriteRule ^seo-agency-sydney-old/?$ /seo-agency-sydney/ [R=301,L]
+RewriteRule ^(\+|%2B)61280338464/?$ / [R=301,NC,L]
+RewriteRule ^mt-content/uploads/2026/10/marketix_australian_pallet_racking_market_report_2026\.pdf$ /wp-content/uploads/2026/10/marketix_australian_pallet_racking_market_report_2026.pdf [R=301,L]
+RewriteRule "^Terms of Service\.pdf$" /wp-content/uploads/2026/11/Terms-of-Service.pdf [R=301,L]
+RewriteRule ^cool_shade_pro_customer_field_test_report/cool_shade_pro_customer_report/Cool_Shade_Pro_Art_Valley_Field_Test_Report\.html$ https://www.coolshadepro.com/assets/Cool-Shade-Pro-Art-Valley-Field-Test.pdf [R=301,L]
+</IfModule>
+# END Marketix redirects
+
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php83” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
