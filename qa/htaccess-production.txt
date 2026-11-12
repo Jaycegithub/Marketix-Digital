@@ -1,19 +1,33 @@
 Options +FollowSymLinks -Indexes
 
-# BEGIN Marketix redirects (old site URLs -> new pages)
+# BEGIN Marketix extra redirects (URLs the block below doesn't cover)
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteRule ^blog/?$ /insights/ [R=301,L]
-RewriteRule ^blog/seo-statistics-australia-2020/?$ /insights/local-seo-statistics-101/ [R=301,L]
 RewriteRule ^blog/(addressing-duplicate-content-issues-in-seo|cheap-vs-affordable-seo-services|common-seo-mistakes|guaranteed-seo-services|history-of-seo|how-to-seo-your-tiktok-videos-correctly|local-seo-ranking-factors|seo-gurus-are-annoying|taylor-swift-concert-announcement-sparks-search-trends-down-under|understanding-entity-seo|were-hiring-business-development-manager-seo-google-ads-sydney|what-is-seo-management)/?$ /insights/ [R=301,L]
-RewriteRule ^blog/(.+?)/?$ /insights/$1/ [R=301,L]
-RewriteRule ^seo-agency-sydney-old/?$ /seo-agency-sydney/ [R=301,L]
 RewriteRule ^(\+|%2B)61280338464/?$ / [R=301,NC,L]
 RewriteRule ^mt-content/uploads/2026/10/marketix_australian_pallet_racking_market_report_2026\.pdf$ /wp-content/uploads/2026/10/marketix_australian_pallet_racking_market_report_2026.pdf [R=301,L]
 RewriteRule "^Terms of Service\.pdf$" /wp-content/uploads/2026/11/Terms-of-Service.pdf [R=301,L]
 RewriteRule ^cool_shade_pro_customer_field_test_report/cool_shade_pro_customer_report/Cool_Shade_Pro_Art_Valley_Field_Test_Report\.html$ https://www.coolshadepro.com/assets/Cool-Shade-Pro-Art-Valley-Field-Test.pdf [R=301,L]
 </IfModule>
-# END Marketix redirects
+# END Marketix extra redirects
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+
+# Existing specific redirects
+RewriteRule ^seo-agency-sydney-old/?$ https://marketix.info/seo-agency-sydney/ [R=301,L]
+
+
+RewriteRule ^blog/seo-statistics-australia-2020/?$ https://marketix.info/blog/local-seo-statistics-101/ [R=301,L]
+
+
+# Redirect old blog structure to Insights
+RewriteRule ^blog/?$ /insights/ [R=301,L]
+RewriteRule ^blog/(.*)$ /insights/$1 [R=301,L]
+
+
+</IfModule>
 
 # BEGIN Other domains and www
 <IfModule mod_rewrite.c>
