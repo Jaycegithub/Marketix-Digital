@@ -117,6 +117,10 @@ Follow these rules on every page you build or edit.
   `site-sidebar-layout: no-sidebar`, `site-post-title: disabled`) or their sections render boxed.
 - **Every page's contact section** (incl. the homepage) embeds the **Contact Us Form** template (1178) with a Template widget;
   each page keeps its own left-panel text. Don't put inline form widgets in contact sections.
+- **404 page** = Theme Builder template **3023** ("404 Page", type error-404, condition Include → 404 Page): navy hero only
+  (Error 404 label, H1, one line, Book A Strategy Call + Back to Home). Full-width CSS (`body.error404 …`) lives in 2915.
+  Set Theme Builder conditions via REST `PUT elementor/v1/site-editor/templates-conditions/<id>` – that refreshes Elementor's
+  conditions cache; writing `_elementor_conditions` meta (or PUT site-editor/templates/<id>) does not.
 - **Category pages** (/insights/category/…) use the Theme Builder archive template **3005** (Insights hero + category pills +
   loop grid on the current query). Pill styles and the full-width fix live in Custom Code 2915. Posts per page = 9.
 - **Permanent redirects live in `.htaccess`** (edit via Rank Math → General Settings → Edit .htaccess; back up first), above
