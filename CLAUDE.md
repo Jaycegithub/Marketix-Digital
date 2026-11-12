@@ -95,6 +95,18 @@ Follow these rules on every page you build or edit.
 - **2914** homepage hero image preload (update it if the hero image changes). **2915** accessibility fixes (tap targets,
   loop list roles, menu-icon label, screen-reader text on "Read More").
 - Elementor performance settings on: local Google Fonts, optimized image loading, lazy-load background images.
+- **Mobile content-visibility** (Custom Code **2927**, head): on mobile, page sections from the 3rd onward (+ footer) get
+  `content-visibility:auto` – cuts mobile TBT ~70–80%. It must stay in a **head** snippet (in body_end it does nothing).
+  Excluded: case studies (`parent-pageid-1527`), `.hero-grid-overlay` sections and any section with the CSS class
+  **`mx-no-cv`** (e.g. Digital PR "Original Research…"), because their images/overlays hang outside the section and would be
+  clipped. Give `mx-no-cv` to any new section whose content overflows it.
+  2927 also preloads the navy hero background `marketix-bg-navy-network-v2.svg` (the LCP element on most pages).
+- **Contrast (Accessibility 100):** on Light Blue / `#F7F9FF` backgrounds use `#3962DE` for blue text (not Secondary
+  `#3D68EA`, 4.37:1); on blue (Secondary) panels use White text, not `white text` (80% → 3.68:1); don't use `#8FA9FF` or
+  `top title` `#6188FF` on white. Heading levels must not skip (H1 → H3); footer column titles are H2.
+- **Images:** all PNG/JPG images used on the site were converted to WebP (≤1600px, q80) as new media items and every
+  reference was switched (originals kept in the library; map in `scratchpad/live/perf/webp_map.json`). Upload new images
+  as WebP and give every featured image alt text (= post title).
 - Keep PageSpeed green: upload images as WebP (featured images ≤1200px wide), give image links alt text, keep 12–14px
   labels on Light Blue sections at `#3962DE` (Secondary `#3D68EA` fails contrast there), underline inline text links.
 - **WP-Optimize** (configured, settings backup exported): page cache on (24h, scheduled preload), gzip on, static file
