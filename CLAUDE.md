@@ -97,9 +97,18 @@ Follow these rules on every page you build or edit.
 - Elementor performance settings on: local Google Fonts, optimized image loading, lazy-load background images.
 - **Mobile content-visibility** (Custom Code **2927**, head): on mobile, page sections from the 3rd onward (+ footer) get
   `content-visibility:auto` – cuts mobile TBT ~70–80%. It must stay in a **head** snippet (in body_end it does nothing).
-  Excluded: case studies (`parent-pageid-1527`), `.hero-grid-overlay` sections and any section with the CSS class
-  **`mx-no-cv`** (e.g. Digital PR "Original Research…"), because their images/overlays hang outside the section and would be
-  clipped. Give `mx-no-cv` to any new section whose content overflows it.
+  Excluded: `.hero-grid-overlay` sections and any section with the CSS class **`mx-no-cv`** (Digital PR "Original Research…",
+  the image section of each case study), because their images/overlays hang outside the section and would be clipped.
+  Give `mx-no-cv` to any new section whose content overflows it.
+  Each skipped section carries its **measured mobile height** in its own Custom CSS (`/*mx-cis*/ … contain-intrinsic-size`,
+  script `scratchpad/live/perf/cis.py` with heights from `scratchpad/axe/measure.js`); the 900px default is a zero-specificity
+  `:where()` rule in 2927. Without accurate heights, Lighthouse's contrast check misreads backgrounds (Accessibility 97) and
+  the scrollbar jumps. **Re-run measure.js + cis.py after changing a page's layout or adding sections.**
+- **Accessibility checks:** `scratchpad/axe/axescan.js` (axe-core on every page, 390 + 1350px) and `axescan_cv.js`
+  (`KEEPCV=1 NOSCROLL=1`, i.e. how Lighthouse sees the page). Both must report 0. Calculator HTML widgets use
+  `--mx-muted:#596785`; the Technical SEO Audit "01/02/03" watermarks are CSS (`mx-deco-num mx-deco-0N`, rules in 2915);
+  links inside text editors and icon-box descriptions are underlined (2915). Lighthouse cache-busting: never use `?m=` (WordPress
+  month archive) – use another parameter name.
   2927 also preloads the navy hero background `marketix-bg-navy-network-v2.svg` (the LCP element on most pages).
 - **Contrast (Accessibility 100):** on Light Blue / `#F7F9FF` backgrounds use `#3962DE` for blue text (not Secondary
   `#3D68EA`, 4.37:1); on blue (Secondary) panels use White text, not `white text` (80% → 3.68:1); don't use `#8FA9FF` or
