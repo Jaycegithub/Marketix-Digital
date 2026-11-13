@@ -135,6 +135,8 @@ Follow these rules on every page you build or edit.
   conditions cache; writing `_elementor_conditions` meta (or PUT site-editor/templates/<id>) does not.
 - **Category pages** (/insights/category/…) use the Theme Builder archive template **3005** (Insights hero + category pills +
   loop grid on the current query). Pill styles and the full-width fix live in Custom Code 2915. Posts per page = 9.
+  **Article content styling** lives in template **2141** → Post Content widget (`a8e51b7`) → Custom CSS. It removes Astra's
+  box-shadow on post `<figure>`s (images and tables) and gives figures a 32px gap; images get a light border instead.
   Paginated category pages (`/page/2/`+) canonicalise to page 1: each category has Rank Math's canonical URL set to its
   page-1 URL (term meta `rank_math_canonical_url`, set via REST `POST rankmath/v1/updateMeta`). **Set it on every new category.**
 - **Permanent redirects live in `.htaccess`** (edit via Rank Math → General Settings → Edit .htaccess; back up first), above
