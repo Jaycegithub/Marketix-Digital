@@ -134,6 +134,10 @@ Follow these rules on every page you build or edit.
   /thank-you/ (as on live) - keep both for conversions. Download thank-you pages: `/thank-you-tradie-download/` (3016, its
   beacon.by link is dead on live too) and `/thank-you-7-killer-ways-to-get-more-calls/` (3017, PDF in the media library;
   old `/downloads/…pdf` URL redirects to it). All three are noindex.
+- **Form anti-spam (all 6 form templates):** `page_url` is a **required text field** hidden with CSS
+  (`.elementor-field-group-page_url{display:none}` in 2927, head) and filled by Custom Code 3018's `fillPage()`. Bots that post
+  straight to admin-ajax without running JS leave it empty and Elementor rejects them server-side. Each form also has an
+  Elementor **Honeypot** field (`field_hp`). Keep both when editing or adding forms; keep 3018 loading on every page.
 - New pages need the Astra layout meta copied from an existing page (`ast-site-content-layout: full-width-container`,
   `site-sidebar-layout: no-sidebar`, `site-post-title: disabled`) or their sections render boxed.
 - **Every page's contact section** (incl. the homepage) embeds the **Contact Us Form** template (1178) with a Template widget;
