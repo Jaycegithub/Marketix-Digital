@@ -166,4 +166,7 @@ Follow these rules on every page you build or edit.
   old.marketixdigital.com.au. **When you build one of those pages, remove its path from its regex rule**, or the redirect
   hides the new page. Lists: `scratchpad/wp/v85/redirect_final.json`.
 - Redirect destinations are stored with the dev domain; Better Search Replace (dev → main, all tables) at launch fixes them.
+- **Site icon / favicon** = media **3454** (`marketix-site-icon-512.png`, square 512×512 transparent, rendered from the logo SVG's
+  M mark; copy in `qa/`). Settings → General → Site Icon. Google needs a **square** icon ≥48px – the old 158×135
+  `favicon-updated.png` (37) was ignored, so search results kept the old site's icon.
 - Schema logo now lives in the media library (ID 2995), not on the old site's /mt-content/ path.
