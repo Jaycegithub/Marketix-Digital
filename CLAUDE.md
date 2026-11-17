@@ -165,6 +165,9 @@ Follow these rules on every page you build or edit.
   `/industries/`; 19 other old pages (tradies, ad landing pages `-ga`, Central Coast, Wollongong…) → same path on
   old.marketixdigital.com.au. **When you build one of those pages, remove its path from its regex rule**, or the redirect
   hides the new page. Lists: `scratchpad/wp/v85/redirect_final.json`.
+- **Link Building (3456), Local SEO (3457), Content SEO (3458)** service pages (Nov 2026): built from their Google Docs with
+  `scratchpad/newpages/build.py` (parse_doc.py → clone of the Shopify SEO page layout + AI SEO process section; Local/Content
+  use the Sydney case-study block). Hero form = SEO Form - General (1176). Their paths were removed from Rank Math redirect 9.
 - Redirect destinations are stored with the dev domain; Better Search Replace (dev → main, all tables) at launch fixes them.
 - **Site icon / favicon** = media **3454** (`marketix-site-icon-512.png`, square 512×512 transparent, rendered from the logo SVG's
   M mark; copy in `qa/`). Settings → General → Site Icon. Google needs a **square** icon ≥48px – the old 158×135
