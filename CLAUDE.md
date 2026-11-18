@@ -123,7 +123,10 @@ Follow these rules on every page you build or edit.
   Elementor regenerates CSS (pages lost styling: giant text). **Don't enable "Defer all JS" or JS merging** – tested: it
   breaks / delays the mobile menu popup. **Always purge the WP-Optimize page cache right after clearing Elementor's CSS cache** (cached HTML keeps pointing at the deleted
   `post-<id>.css` files: pages lose their styling and scroll sideways on mobile until purged). Purge the page cache after editing pages via the REST API
-  (saves in the Elementor editor purge automatically). **2927** preloads the 4 Poppins woff2 files (update if Elementor
+  (saves in the Elementor editor purge automatically). **When editing via REST (no WP-Optimize purge available): after every
+  Elementor cache clear, run `scratchpad/live/regen.py`** – it renders every page once with a cache-busting query (Elementor
+  rebuilds each `post-<id>.css` under the same name the cached HTML points to) and then checks that every stylesheet the
+  cached pages reference returns 200. Skipping this left Search Intelligence and SEO Agency Sydney unstyled (Nov 2026). **2927** preloads the 4 Poppins woff2 files (update if Elementor
   regenerates its local fonts).
 
 ## Launch setup (pre go-live, Nov 2026)
