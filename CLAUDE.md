@@ -171,6 +171,10 @@ Follow these rules on every page you build or edit.
 - **Link Building (3456), Local SEO (3457), Content SEO (3458)** service pages (Nov 2026): built from their Google Docs with
   `scratchpad/newpages/build.py` (parse_doc.py → clone of the Shopify SEO page layout + AI SEO process section; Local/Content
   use the Sydney case-study block). Hero form = SEO Form - General (1176). Their paths were removed from Rank Math redirect 9.
+- **Industry pages** SaaS 3510 (`/industries/saas/`, child of Industries 2669) and Fashion & Apparel 3511 (`/fashion-seo/`)
+  (Nov 2026): same builder as the service pages (Sydney case-study block, SEO Form - General); service-card icons come from
+  the Iconify links in each doc (`scratchpad/newpages/icons/resolve_icons.py` reuses/uploads `marketix-glyph-*.svg`).
+  Their paths were removed from Rank Math redirect 10 (pattern in `qa/rankmath-rule10-industries-pattern.txt`).
 - **City pages** Adelaide 3475, Brisbane 3476, Canberra 3477, Darwin 3478, Gold Coast 3479, Melbourne 3480, Perth 3481 (Nov 2026):
   duplicates of SEO Agency Sydney (1295) with "Sydney" → city in all text + Rank Math meta (`scratchpad/cities/make_cities.py`).
   Deliberately still "Sydney": the award names in the FAQ ("Clutch Leader … in Sydney", "Leading SEO Agency of the Year in
