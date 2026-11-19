@@ -141,6 +141,10 @@ Follow these rules on every page you build or edit.
   (`.elementor-field-group-page_url{display:none}` in 2927, head) and filled by Custom Code 3018's `fillPage()`. Bots that post
   straight to admin-ajax without running JS leave it empty and Elementor rejects them server-side. Each form also has an
   Elementor **Honeypot** field (`field_hp`). Keep both when editing or adding forms; keep 3018 loading on every page.
+  **Cloudflare Turnstile** (Nov 2026): Custom Code **3525** (body_end) renders the widget into every `form.elementor-form`
+  before the submit button on the visitor's first interaction (keeps PageSpeed green) and resets it after each send. The server
+  check is a PHP snippet (WPCode / `elementor_pro/forms/validation`) using `MX_TURNSTILE_SECRET` from wp-config.php – never
+  put the secret key in Custom Code, the repo or chat.
 - New pages need the Astra layout meta copied from an existing page (`ast-site-content-layout: full-width-container`,
   `site-sidebar-layout: no-sidebar`, `site-post-title: disabled`) or their sections render boxed.
 - **Every page's contact section** (incl. the homepage) embeds the **Contact Us Form** template (1178) with a Template widget;
