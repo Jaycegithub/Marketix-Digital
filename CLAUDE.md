@@ -179,7 +179,10 @@ Follow these rules on every page you build or edit.
   (Nov 2026): same builder as the service pages (Sydney case-study block, SEO Form - General); service-card icons come from
   the Iconify links in each doc (`scratchpad/newpages/icons/resolve_icons.py` reuses/uploads `marketix-glyph-*.svg`).
   Home Appliances 3518, Lawyers & Law Firms 3519, Business Supplies & Equipment 3520 (all under /industries/) were built
-  the same way. Their paths were removed from Rank Math redirect 10 (current pattern in `qa/rankmath-rule10-industries-pattern.txt`).
+  the same way, then (Nov 19) Retirement & Aged Care 3533, Warehousing & Storage 3534, Wedding Services 3535, Fine Jewelry &
+  Watches 3536, Laser Clinics 3537, Renewable Energy 3538, Cosmetic & Plastic Surgery 3539, Charities & Non-Profits 3540,
+  Construction 3541, Concrete Contractors 3542. Their paths were removed from Rank Math redirect 10 (current pattern in
+  `qa/rankmath-rule10-industries-pattern.txt`). Text check vs doc: `scratchpad/newpages/textcheck.js`.
 - **City pages** Adelaide 3475, Brisbane 3476, Canberra 3477, Darwin 3478, Gold Coast 3479, Melbourne 3480, Perth 3481 (Nov 2026):
   duplicates of SEO Agency Sydney (1295) with "Sydney" → city in all text + Rank Math meta (`scratchpad/cities/make_cities.py`).
   Deliberately still "Sydney": the award names in the FAQ ("Clutch Leader … in Sydney", "Leading SEO Agency of the Year in
