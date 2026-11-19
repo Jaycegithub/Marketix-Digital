@@ -188,7 +188,8 @@ Follow these rules on every page you build or edit.
   Deliberately still "Sydney": the award names in the FAQ ("Clutch Leader … in Sydney", "Leading SEO Agency of the Year in
   Sydney"), the office address "Sydney, Australia", and client-logo details. Rank Math redirect 9 now only covers international-seo.
 - Redirect destinations are stored with the dev domain; Better Search Replace (dev → main, all tables) at launch fixes them.
-- **Site icon / favicon** = media **3454** (`marketix-site-icon-512.png`, square 512×512 transparent, rendered from the logo SVG's
-  M mark; copy in `qa/`). Settings → General → Site Icon. Google needs a **square** icon ≥48px – the old 158×135
+- **Site icon / favicon** = `marketix-site-icon-600.png` (square 600×600 transparent M mark from the logo SVG; copies in `qa/`),
+  set and **cropped** in Customize → Site Identity → Site Icon, so WordPress generates `cropped-…-32x32/180/192/270` files.
+  An exactly 512×512 image (or setting `site_icon` via REST) skips the crop, and the tags then point at 150/300px files labelled 32/192. Google needs a **square** icon ≥48px – the old 158×135
   `favicon-updated.png` (37) was ignored, so search results kept the old site's icon.
 - Schema logo now lives in the media library (ID 2995), not on the old site's /mt-content/ path.
