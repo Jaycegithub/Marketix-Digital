@@ -182,7 +182,10 @@ Follow these rules on every page you build or edit.
   the same way, then (Nov 19) Retirement & Aged Care 3533, Warehousing & Storage 3534, Wedding Services 3535, Fine Jewelry &
   Watches 3536, Laser Clinics 3537, Renewable Energy 3538, Cosmetic & Plastic Surgery 3539, Charities & Non-Profits 3540,
   Construction 3541, Concrete Contractors 3542. Their paths were removed from Rank Math redirect 10 (current pattern in
-  `qa/rankmath-rule10-industries-pattern.txt`). Text check vs doc: `scratchpad/newpages/textcheck.js`.
+  `qa/rankmath-rule10-industries-pattern.txt`). Nov 22: Yacht Sales & Brokerage 3568, Asbestos Removal 3569, Yoga Studios 3570,
+  CBD & Hemp Products 3571, Natural Stones & Marble 3572 (all /industries/). **Builder scripts are kept in
+  `qa/scripts/pagebuilder/`** (README has the steps) – the scratchpad is wiped when the session environment resets.
+  Known on all these pages: axe `scrollable-region-focusable` on the mobile swipe row of the 3 "Expertise" cards.
 - **City pages** Adelaide 3475, Brisbane 3476, Canberra 3477, Darwin 3478, Gold Coast 3479, Melbourne 3480, Perth 3481 (Nov 2026):
   duplicates of SEO Agency Sydney (1295) with "Sydney" → city in all text + Rank Math meta (`scratchpad/cities/make_cities.py`).
   Deliberately still "Sydney": the award names in the FAQ ("Clutch Leader … in Sydney", "Leading SEO Agency of the Year in
