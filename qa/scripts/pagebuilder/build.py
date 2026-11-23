@@ -45,6 +45,13 @@ ICONS = {
  'content': ['file-search', 'keyword-search', 'compass', 'copy-text', 'refresh', 'sitemap', 'graph-up'],
 }.get(name, [])
 ICONIFY = json.load(open(f'{D}/icons/icons.json'))
+def topic_glyph(title):
+    t = title.lower()
+    for keys, g in ((('link',), 'link-chain'), (('technical',), 'settings-1'), (('local', 'destination'), 'location'),
+                    (('conversion', 'tracking', 'measurement', 'reporting'), 'graph-up'),
+                    (('keyword', 'research', 'search demand'), 'search-akar'), (('content',), 'file-content')):
+        if any(k in t for k in keys): return g
+    return 'multiple-pages'
 
 R = lambda r, c=0: rows[r][c] if c < len(rows[r]) else []
 sec = {i: copy.deepcopy(s) for i, s in enumerate(SH)}
@@ -97,8 +104,10 @@ for n_, (t, d) in enumerate(pairs):
     ib['settings']['title_text'] = t['text']
     if icon_specs[n_]:
         g = ICONIFY[icon_specs[n_]]; ib['settings']['selected_icon'] = {'library': 'svg', 'value': {'id': g['id'], 'url': g['url']}}
-    else:
+    elif n_ < len(ICONS):
         ib['settings']['selected_icon'] = glyph(ICONS[n_])
+    else:  # doc names no icon: same glyph the other industry pages use for that topic
+        ib['settings']['selected_icon'] = glyph(topic_glyph(t['text']))
     hd['settings']['title'] = d['html']; c['elements'] = [ib, hd]; cards.append(c)
 grid['elements'] = cards
 

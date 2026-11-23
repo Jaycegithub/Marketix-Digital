@@ -183,7 +183,9 @@ Follow these rules on every page you build or edit.
   Watches 3536, Laser Clinics 3537, Renewable Energy 3538, Cosmetic & Plastic Surgery 3539, Charities & Non-Profits 3540,
   Construction 3541, Concrete Contractors 3542. Their paths were removed from Rank Math redirect 10 (current pattern in
   `qa/rankmath-rule10-industries-pattern.txt`). Nov 22: Yacht Sales & Brokerage 3568, Asbestos Removal 3569, Yoga Studios 3570,
-  CBD & Hemp Products 3571, Natural Stones & Marble 3572 (all /industries/). **Builder scripts are kept in
+  CBD & Hemp Products 3571, Natural Stones & Marble 3572 (all /industries/). Nov 23: Insulation Companies 3583, Outdoor & Adventure Sports 3584
+  (`outdoor-and-adventures-sports`, as in the doc), Architecture Firms 3585, Food & Beverage 3586, Dentists 3587 – their docs had no
+  Iconify links, so `build.py` picks the card icon by topic (`topic_glyph`: link/technical/local/conversion/research/content). **Builder scripts are kept in
   `qa/scripts/pagebuilder/`** (README has the steps) – the scratchpad is wiped when the session environment resets.
   Known on all these pages: axe `scrollable-region-focusable` on the mobile swipe row of the 3 "Expertise" cards.
 - **City pages** Adelaide 3475, Brisbane 3476, Canberra 3477, Darwin 3478, Gold Coast 3479, Melbourne 3480, Perth 3481 (Nov 2026):
