@@ -63,7 +63,16 @@ Follow these rules on every page you build or edit.
   - **SEO Form - General** = template 1176 with the current card text – don't edit it.
   - **Search Intelligence Form** (ID 2906) and **Google Ads Form** (ID 2908, Adwords + PPC Agency Sydney) = own form templates
     whose fields match their docs exactly (placeholder "goals and challenges", revenue options as written in the docs).
-  - **Digital PR Form** (ID 2903) = same, without the Annual Revenue field; its card has no footnote.
+  - **Digital PR Form** (ID 2903, form name "Digital PR - Hero") and **Digital PR Enquiry Form** (ID 3627, "Digital PR - Enquiry",
+    bottom of /digital-pr/) – same fields (Nov 25 brief): Full name, Job title, Work email, Phone number, Company name, Website URL,
+    objectives (checkbox group, class `mx-required-group`), monthly investment (radio) + "AUD, excluding GST" note (form HTML field),
+    commercial objectives textarea; button "Book a Digital PR Strategy Call". Lead/confirmation email tables list every field.
+    Keep the two templates in sync (`qa/scripts/digital-pr-form/form_build.py`). The Digital PR page's bottom contact panel uses
+    3627 instead of 1178 (exception to the contact-section rule); its "Book A Strategy Call" buttons link to `#digital-pr-strategy`
+    and its Our Approach section is a page-local copy of 1270 (so that button can point to the form).
+  - **Custom Code 3624 "Form Fixes"** (site-wide, body_end): blocks a send when a required checkbox group (`mx-required-group`)
+    has nothing ticked (Elementor ignores "required" on checkbox groups) and strips spaces from phone fields (Elementor's tel
+    validation rejects "0400 000 000").
   - Always copy field labels, placeholders and dropdown options verbatim from the form doc, and verify the rendered form.
 - **Featured In The Media**, **Reviews Section**, **Our Approach Section**.
 - **Founder Video Section** (ID 2070): white section with a navy panel – heading, copy, callout and the founder YouTube video.
@@ -144,7 +153,8 @@ Follow these rules on every page you build or edit.
   **Cloudflare Turnstile** (Nov 2026): Custom Code **3525** (body_end) renders the widget into every `form.elementor-form`
   before the submit button on the visitor's first interaction (keeps PageSpeed green) and resets it after each send. The server
   check is a PHP snippet (WPCode / `elementor_pro/forms/validation`) using `MX_TURNSTILE_SECRET` from wp-config.php – never
-  put the secret key in Custom Code, the repo or chat.
+  put the secret key in Custom Code, the repo or chat. The server check is active (Nov 25): headless/automated browsers can't get a token, so a
+  successful test submission has to be done by a person in a normal browser.
 - New pages need the Astra layout meta copied from an existing page (`ast-site-content-layout: full-width-container`,
   `site-sidebar-layout: no-sidebar`, `site-post-title: disabled`) or their sections render boxed.
 - **Every page's contact section** (incl. the homepage) embeds the **Contact Us Form** template (1178) with a Template widget;

@@ -1,0 +1,32 @@
+<script>
+/* Elementor form fixes (runs before Elementor's own submit handler):
+   1. Required checkbox groups: Elementor doesn't enforce "required" on a group of checkboxes, so block the send until one is ticked.
+   2. Phone fields: Elementor rejects spaces in phone numbers ("0400 000 000"), so strip them before sending. */
+(function(){
+  function msg(){ return 'This field is required.'; }
+  function clear(g){ var e = g.querySelector('.mx-cb-error'); if (e) e.remove(); g.classList.remove('elementor-error'); }
+  document.addEventListener('submit', function(e){
+    var f = e.target;
+    if (!f || !f.classList || !f.classList.contains('elementor-form')) return;
+    [].forEach.call(f.querySelectorAll('input[type="tel"]'), function(i){ i.value = i.value.replace(/\s+/g, ''); });
+    var bad = null;
+    var groups = [];
+    [].forEach.call(f.querySelectorAll('.elementor-field-type-checkbox.elementor-field-required, .mx-required-group'), function(x){
+      var g = x.closest('.elementor-field-group'); if (g && groups.indexOf(g) < 0) groups.push(g); });
+    groups.forEach(function(g){
+      if (g.querySelector('input[type="checkbox"]:checked')) { clear(g); return; }
+      if (!g.querySelector('.mx-cb-error')) {
+        var s = document.createElement('span');
+        s.className = 'elementor-message elementor-message-danger elementor-help-inline elementor-form-help-inline mx-cb-error';
+        s.setAttribute('role', 'alert'); s.textContent = msg(f); g.appendChild(s);
+      }
+      g.classList.add('elementor-error'); bad = bad || g;
+    });
+    if (bad) { e.preventDefault(); e.stopImmediatePropagation(); bad.scrollIntoView({block: 'center', behavior: 'smooth'}); }
+  }, true);
+  document.addEventListener('change', function(e){
+    var i = e.target;
+    if (i && i.type === 'checkbox' && i.checked) { var g = i.closest('.elementor-field-type-checkbox'); if (g) clear(g); }
+  });
+})();
+</script>
