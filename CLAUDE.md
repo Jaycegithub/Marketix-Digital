@@ -185,7 +185,8 @@ Follow these rules on every page you build or edit.
   `qa/rankmath-rule10-industries-pattern.txt`). Nov 22: Yacht Sales & Brokerage 3568, Asbestos Removal 3569, Yoga Studios 3570,
   CBD & Hemp Products 3571, Natural Stones & Marble 3572 (all /industries/). Nov 23: Insulation Companies 3583, Outdoor & Adventure Sports 3584
   (`outdoor-and-adventures-sports`, as in the doc), Architecture Firms 3585, Food & Beverage 3586, Dentists 3587 – their docs had no
-  Iconify links, so `build.py` picks the card icon by topic (`topic_glyph`: link/technical/local/conversion/research/content). **Builder scripts are kept in
+  Iconify links, so `build.py` picks the card icon by topic (`topic_glyph`: link/technical/local/conversion/research/content). Nov 25: Office Fitout 3607,
+  Agriculture 3608, Air Conditioning Contractors 3609, FMCG Brands 3610, Education & E-Learning 3611 (`live/preview.py` recreates previews). **Builder scripts are kept in
   `qa/scripts/pagebuilder/`** (README has the steps) – the scratchpad is wiped when the session environment resets.
   Known on all these pages: axe `scrollable-region-focusable` on the mobile swipe row of the 3 "Expertise" cards.
 - **City pages** Adelaide 3475, Brisbane 3476, Canberra 3477, Darwin 3478, Gold Coast 3479, Melbourne 3480, Perth 3481 (Nov 2026):
