@@ -137,13 +137,14 @@ Follow these rules on every page you build or edit.
   rebuilds each `post-<id>.css` under the same name the cached HTML points to) and then checks that every stylesheet the
   cached pages reference returns 200. Skipping this left Search Intelligence and SEO Agency Sydney unstyled (Nov 2026). **2927** preloads the 4 Poppins woff2 files (update if Elementor
   regenerates its local fonts).
-- **Automatic page-cache purge** (Nov 27): WPCode PHP snippet "Auto Purge Page Cache" (copy in `qa/wpcode-auto-purge-cache.php`)
-  purges the whole WP-Optimize page cache once per request when a page/post/template/custom code is published, updated or
-  unpublished, on Elementor saves, Elementor's CSS cache clear, menus, Customizer and category changes. Cloudflare serves
-  HTML uncached (`cf-cache-status: DYNAMIC`). Once it's active, REST edits purge too – `regen.py` is still needed after an
-  Elementor cache clear so every `post-<id>.css` is rebuilt.
-
-## Launch setup (pre go-live, Nov 2026)
+- **Automatic page-cache purge** (Nov 27): WPCode PHP snippet "Auto Purge Page Cache" (3677, copy in `qa/wpcode-auto-purge-cache.php`).
+  WP-Optimize itself only purges public posts/pages on save (the item, homepage, feeds, categories, adjacent posts) – not
+  templates, header/footer, site settings, Custom Code or menus, and not /insights/ (it isn't the WP posts page). The snippet
+  purges just the item + homepage (+ /insights/ and its categories for posts) on page/post saves, and the **whole** cache only
+  for site-wide changes (elementor_library, elementor_snippet, wpcode, menus, Customizer, terms, Elementor CSS regeneration).
+  A full purge makes WP-Optimize re-preload every page within ~1 min – that burst plus other traffic hit InMotion's process
+  limit once (508, Nov 27), so avoid unnecessary full purges. Cloudflare serves HTML uncached (`cf-cache-status: DYNAMIC`).
+  InMotion ModSecurity blocks WPCode saves containing `$GLOBALS`/`is_callable(array(…))` – keep snippets plain.
 - Form leads go to **hello@marketix.info** (form templates 1176, 1178, 782, 2903, 2906, 2908), with two internal addresses in
   BCC (Email action → BCC; keep them when editing forms). Every form's actions are
   email + save-to-database + **redirect to `/thank-you/`** (page 3012, noindex, copied from live). Tracking tags load
