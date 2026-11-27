@@ -137,6 +137,11 @@ Follow these rules on every page you build or edit.
   rebuilds each `post-<id>.css` under the same name the cached HTML points to) and then checks that every stylesheet the
   cached pages reference returns 200. Skipping this left Search Intelligence and SEO Agency Sydney unstyled (Nov 2026). **2927** preloads the 4 Poppins woff2 files (update if Elementor
   regenerates its local fonts).
+- **Automatic page-cache purge** (Nov 27): WPCode PHP snippet "Auto Purge Page Cache" (copy in `qa/wpcode-auto-purge-cache.php`)
+  purges the whole WP-Optimize page cache once per request when a page/post/template/custom code is published, updated or
+  unpublished, on Elementor saves, Elementor's CSS cache clear, menus, Customizer and category changes. Cloudflare serves
+  HTML uncached (`cf-cache-status: DYNAMIC`). Once it's active, REST edits purge too – `regen.py` is still needed after an
+  Elementor cache clear so every `post-<id>.css` is rebuilt.
 
 ## Launch setup (pre go-live, Nov 2026)
 - Form leads go to **hello@marketix.info** (form templates 1176, 1178, 782, 2903, 2906, 2908), with two internal addresses in
